@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Buscar Ruta{% endblock %}
+{% block content %}
+    <h1>Encuentra tu Ruta 🚍</h1>
+    <p>Selecciona tu distrito de origen y destino para encontrar las rutas de transporte que te conectan.</p>
+    <form action="/buscar" method="post">
+        <div style="margin-bottom: 15px;">
+            <label for="origen"><strong>Desde:</strong></label><br>
+            <select id="origen" name="origen" required style="width: 100%; padding: 8px;">
+                {% for distrito in distritos %}
+                    <option value="{{ distrito }}">{{ distrito }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="destino"><strong>Hacia:</strong></label><br>
+            <select id="destino" name="destino" required style="width: 100%; padding: 8px;">
+                {% for distrito in distritos %}
+                    <option value="{{ distrito }}">{{ distrito }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-size: 1em;">Buscar</button>
+    </form>
+{% endblock %}

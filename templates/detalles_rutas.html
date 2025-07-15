@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Detalles de {{ ruta.ruta_nombre }}{% endblock %}
+{% block content %}
+    <h1>{{ ruta.ruta_nombre }}</h1>
+    <h2>Empresa: {{ ruta.empresa_nombre }}</h2>
+    
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <div style="flex: 1; min-width: 300px;">
+            <h3>Paraderos Principales:</h3>
+            <ul>
+                {% for paradero in paraderos %}
+                    <li>{{ paradero }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="flex: 1; min-width: 300px;">
+             <h3>Distritos que recorre:</h3>
+             <p class="distritos-list">{{ distritos|join(', ') }}</p>
+             
+             {% if ruta.imagen %}
+                <img src="{{ url_for('static', filename='imagenes/' + ruta.imagen) }}" alt="Imagen de la ruta {{ ruta.ruta_nombre }}" class="bus-image">
+             {% endif %}
+        </div>
+    </div>
+    
+    <br>
+    <a href="javascript:history.back()">← Volver</a>
+{% endblock %}

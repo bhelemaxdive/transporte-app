@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Resultados de Búsqueda{% endblock %}
+{% block content %}
+    <h2>Rutas desde {{ origen }} hacia {{ destino }}</h2>
+    {% if rutas %}
+        <p>Hemos encontrado {{ rutas|length }} ruta(s) que conectan estos distritos.</p>
+        {% for ruta in rutas %}
+            <div class="card">
+                <a href="{{ url_for('detalles_ruta', ruta_id=ruta.id) }}">
+                    <div class="card-title">{{ ruta.nombre }}</div>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="card">
+            <p>❌ No se encontraron rutas directas entre los distritos seleccionados.</p>
+        </div>
+    {% endif %}
+    <br>
+    <a href="/">← Volver a buscar</a>
+{% endblock %}
