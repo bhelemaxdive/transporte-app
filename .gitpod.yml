@@ -1,0 +1,23 @@
+tasks:
+  - name: Setup & Run
+    init: |
+      pip install -r requirements.txt
+      if [ ! -f "transporte.db" ]; then
+        echo "Base de datos no encontrada. Creando..."
+        python crear_db.py
+      else
+        echo "Base de datos ya existe."
+      fi
+    command: |
+      python app.py
+
+ports:
+  - port: 5000
+    onOpen: open-preview
+    name: "Web App"
+    description: "La aplicación web de rutas"
+
+vscode:
+  extensions:
+    - ms-python.python
+    - ritwickdey.liveserver
